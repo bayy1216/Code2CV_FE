@@ -60,6 +60,8 @@ axiosClient.interceptors.response.use(
         const res = await resp.json();
         console.log(res);
         secureLocalStorage.setItem('accessToken', res.data.accessToken);
+        // 원래 요청에서 header에 accessToken을 추가하고 다시 요청
+        originalRequest.headers['Authorization'] = `Bearer ${res.data.accessToken}`;
         return axiosClient(originalRequest);
       }else{
         console.log('토큰 재발급 실패');

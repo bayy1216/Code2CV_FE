@@ -17,7 +17,7 @@ export default function RootHeader() {
   return (
     <header className="w-full flex flex-row h-[80px] items-center px-[200px]">
       <Link to={'/'}>
-        <img src="/src/assets/CODE2CV.svg" alt="logo"/>
+        <img src="/CODE2CV.svg" alt="logo"/>
       </Link>
 
       <div className="w-[80px]"></div>

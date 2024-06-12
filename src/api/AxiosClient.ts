@@ -41,6 +41,7 @@ axiosClient.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
+    console.log('Error Response', error.response);
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = secureLocalStorage.getItem('refreshToken');
@@ -56,18 +57,15 @@ axiosClient.interceptors.response.use(
         },
       });
       if (resp.ok) {
-        console.log('토큰 재발급 성공');
         const res = await resp.json();
-        console.log(res);
-        secureLocalStorage.setItem('accessToken', res.data.data.accessToken);
+        secureLocalStorage.setItem('accessToken', res.data.accessToken);
         // 원래 요청에서 header에 accessToken을 추가하고 다시 요청
-        originalRequest.headers['Authorization'] = `Bearer ${res.data.data.accessToken}`;
+        originalRequest.headers['Authorization'] = `Bearer ${res.data.accessToken}`;
         return axiosClient(originalRequest);
       }else{
         console.log('토큰 재발급 실패');
         secureLocalStorage.removeItem('accessToken');
         secureLocalStorage.removeItem('refreshToken');
-        window.location.href = '/';
       }
       return Promise.reject(error);
     }

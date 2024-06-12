@@ -2,6 +2,7 @@ import {useQuery} from "@tanstack/react-query";
 import {ProjectModel} from "@/api/project/project.response.ts";
 import {getProjects} from "@/api/project/project.api.ts";
 import {useState} from "react";
+import {analyzeProjectById} from "@/api/analyze/analyze.api.ts";
 
 export default function ProjectPage() {
   const {data} = useQuery<ProjectModel[]>({
@@ -56,8 +57,8 @@ function ProjectItem({project}: {project: ProjectModel}) {
   const now = new Date().toLocaleDateString();
   const daysDiff = Math.floor((new Date(now).getTime() - new Date(updatedAt).getTime()) / (1000 * 60 * 60 * 24));
 
-  const onButtonClick = () => {
-    console.log(project);
+  const onButtonClick = async () => {
+    await analyzeProjectById(project.id);
   }
 
   return (

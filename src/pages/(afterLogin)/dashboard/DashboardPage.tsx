@@ -133,7 +133,7 @@ function TopMenu({menuOnClick, selectIndex} : {menuOnClick: (index: number) => v
             {item.name}
           </h1>
           {selectIndex === index ? (
-            <line className="w-[60px] h-[3px] bg-bc"/>
+            <div className="w-[60px] h-[3px] bg-bc"/>
           ):  <div/>}
 
         </div>
@@ -174,15 +174,15 @@ function SkillItem({title, count, content}: SkillItemProps) {
           {title}
         </h1>
         <div className="rounded-full bg-[#F4EEFF] w-6 h-6 flex justify-center items-center">
-          <text className="text-black text-[12px] font-semibold">
+          <div className="text-black text-[12px] font-semibold">
             {count}
-          </text>
+          </div>
 
         </div>
       </div>
-      <text className="text-[14px] font-normal text-gray-0">
+      <div className="text-[14px] font-normal text-gray-0">
         {content}
-      </text>
+      </div>
     </div>
   );
 }

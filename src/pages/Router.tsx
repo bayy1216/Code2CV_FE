@@ -28,6 +28,12 @@ const router = createBrowserRouter([
 
 export default function Router() {
   const {user, setUser, resetUser} = useUserStore();
+  if(import.meta.env.MODE === 'dev'){
+    const token = import.meta.env.VITE_ACCESS_TOKEN;
+    if(token){
+      secureLocalStorage.setItem('accessToken', token);
+    }
+  }
   useEffect(() => {
     if (user) {
       return;

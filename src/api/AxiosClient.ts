@@ -67,7 +67,7 @@ axiosClient.interceptors.response.use(
         console.log('토큰 재발급 실패');
         secureLocalStorage.removeItem('accessToken');
         secureLocalStorage.removeItem('refreshToken');
-        window.location.href = '/login';
+        window.location.href = '/';
       }
       return Promise.reject(error);
     }

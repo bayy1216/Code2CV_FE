@@ -29,7 +29,7 @@ export default function GithubAfterLoginPage() {
 
     oauthLogin(req).then((res) => {
       secureLocalStorage.setItem('accessToken', res.accessToken);
-      secureLocalStorage.setItem('refreshToken', res.accessToken);
+      secureLocalStorage.setItem('refreshToken', res.refreshToken);
       setUser(res.user);
       nav('/user/dashboard');
     }).catch(() => {

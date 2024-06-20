@@ -55,6 +55,7 @@ module.exports = {
         'gray-0' : '#797979',
         'gray-1' : '#818182',
         'gray-2' : '#AEACB3',
+        'gray-4' : '#F4F4F5',
         'bc' : '#9057E5',
       },
       borderRadius: {

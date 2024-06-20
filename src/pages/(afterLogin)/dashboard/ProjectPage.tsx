@@ -1,6 +1,6 @@
 import {useQuery} from "@tanstack/react-query";
-import {ProjectModel} from "@/api/project/project.response.ts";
-import {getProjects} from "@/api/project/project.api.ts";
+import {ProjectDetailModel, ProjectModel} from "@/api/project/project.response.ts";
+import {getProjectDetails, getProjects} from "@/api/project/project.api.ts";
 import {useState} from "react";
 import {analyzeProjectById} from "@/api/analyze/analyze.api.ts";
 
@@ -10,13 +10,19 @@ export default function ProjectPage() {
       queryFn: getProjects,
   });
 
+  const projectDetails = useQuery<ProjectDetailModel[]>({
+    queryKey: ['projectDetail'],
+    queryFn: getProjectDetails,
+  });
+
+
   console.log(data);
 
   return (
     <div className="w-full h-full flex flex-row justify-center pt-4">
       <ProjectList projects={data}/>
       <div className="w-4"></div>
-      <AfterAnalysisProjectList/>
+      <AfterAnalysisProjectList projectDetails = {projectDetails.data}/>
     </div>
   );
 }
@@ -83,15 +89,29 @@ function ProjectItem({project}: {project: ProjectModel}) {
 
 }
 
-function AfterAnalysisProjectList() {
+function AfterAnalysisProjectList({projectDetails}: {projectDetails?: ProjectDetailModel[]}) {
   return (
     <div className="w-[420px] flex flex-col p-[24px]
      bg-white rounded-[24px]">
       <h1 className="text-[20px] font-bold">분석 완료된 프로젝트</h1>
       <div className="flex flex-col">
-
+        {projectDetails?.map((projectDetail) => (
+          <AfterAnalysisProjectItem key={projectDetail.id} projectDetail={projectDetail}/>
+        ))}
       </div>
     </div>
   );
+}
 
+function AfterAnalysisProjectItem({projectDetail}: {projectDetail: ProjectDetailModel}) {
+  return (
+    <div className="w-full flex flex-col border-b py-4">
+      <h1 className="text-[16px] font-semibold">
+        {projectDetail.projectName}
+      </h1>
+      <div className="text-[14px] font-normal text-gray-1">
+        {projectDetail.updatedAt}
+      </div>
+    </div>
+  );
 }

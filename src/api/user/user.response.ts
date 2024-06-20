@@ -1,7 +1,7 @@
 export interface UserModel {
   id: number;
   githubName: string;
-  githubUserName: string;
+  githubUsername: string;
   githubBio: string;
   githubCompany: string;
   profileImageUrl: string;

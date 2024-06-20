@@ -56,7 +56,7 @@ function UserMenu({user}: { user: UserModel }) {
         {user.githubName}
       </h1>
       <div className="text-[12px] font-medium text-gray-2">
-        {user.githubUserName}
+        {user.githubUsername}
       </div>
       <div className="my-2">
         <p className="text-gray-1 text-[14px] font-normal w-full">

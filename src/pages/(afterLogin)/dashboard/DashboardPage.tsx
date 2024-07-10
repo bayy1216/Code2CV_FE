@@ -1,7 +1,7 @@
 import {useUserStore} from "@/store/userStore.ts";
 import {UserModel} from "@/api/user/user.response.ts";
-import {analyzeProjects} from "@/api/analyze/analyze.api.ts";
 import {useState} from "react";
+import {refreshProjects} from "@/api/project/project.api.ts";
 
 export default function DashboardPage() {
   const {user} = useUserStore();
@@ -40,7 +40,7 @@ function UserMenu({user}: { user: UserModel }) {
 
   const onClickAnalyze = () => {
     setAnalyzeLoading(true);
-    analyzeProjects().then((res) => {
+    refreshProjects().then((res) => {
       console.log(res);
       setAnalyzeLoading(false);
       window.alert('분석 완료');

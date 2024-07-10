@@ -48,7 +48,7 @@ axiosClient.interceptors.response.use(
       if (!refreshToken) {
         return Promise.reject(error);
       }
-      const resp = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/refresh`, {
+      const resp = await fetch(`${import.meta.env.VITE_API_BASE_URL}/p/api/auth/refresh`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

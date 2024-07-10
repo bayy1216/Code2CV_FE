@@ -6,7 +6,7 @@ import {axiosClient} from "@/api/AxiosClient.ts";
 
 
 export async function oauthLogin(req: OAuthLoginRequest): Promise<LoginResponse> {
-  const res = await axiosClient.post('/api/auth/login/oauth2', req);
+  const res = await axiosClient.post('/p/api/auth/login/oauth2', req);
   return res.data;
 }
 

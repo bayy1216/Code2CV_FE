@@ -3,10 +3,10 @@ import {ProjectAnalysisMetaModel} from "@/api/project/project.response.ts";
 
 export function AfterAnalysisProjectList({projectAnalysisMetas}: {projectAnalysisMetas?: ProjectAnalysisMetaModel[]}) {
   return (
-    <div className="w-[420px] flex flex-col p-[24px]
+    <div className="w-[420px] flex flex-col p-[24px]  overflow-y-auto
      bg-white rounded-[24px]">
       <h1 className="text-[20px] font-bold mb-[20px]">분석 완료된 프로젝트</h1>
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         {projectAnalysisMetas?.map((projectAnalysisMeta) => (
           <AfterAnalysisProjectItem key={projectAnalysisMeta.id} projectAnalysisMeta={projectAnalysisMeta}/>
         ))}

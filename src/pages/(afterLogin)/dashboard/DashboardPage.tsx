@@ -1,10 +1,17 @@
 import {useUserStore} from "@/store/userStore.ts";
-import {UserModel} from "@/api/user/user.response.ts";
+import {SkillDashboardResponse, UserModel} from "@/api/user/user.response.ts";
 import {useState} from "react";
 import {refreshProjects} from "@/api/project/project.api.ts";
+import {useQuery} from "@tanstack/react-query";
+import {getSkillDashboard} from "@/api/user/user.api.ts";
 
 export default function DashboardPage() {
   const {user} = useUserStore();
+  const {data} = useQuery<SkillDashboardResponse>({
+    queryKey: ['skillDashboard'],
+    queryFn: getSkillDashboard,
+  });
+
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -12,7 +19,7 @@ export default function DashboardPage() {
   return (
     <div className="w-full h-full flex flex-row px-32 justify-center">
       <UserMenu user={user}/>
-      <DashboardMain/>
+      <DashboardMain skillDashboard={data}/>
     </div>
   );
 }
@@ -88,7 +95,7 @@ function UserMenu({user}: { user: UserModel }) {
   );
 }
 
-function DashboardMain() {
+function DashboardMain({skillDashboard}: { skillDashboard?: SkillDashboardResponse}) {
   const [selectIndex, setSelectIndex] = useState(0);
   const menuOnClick = (index: number) => {
     setSelectIndex(index);
@@ -98,28 +105,29 @@ function DashboardMain() {
     <div className="w-[802px] my-4">
       <TopMenu menuOnClick={menuOnClick} selectIndex={selectIndex}/>
       <div className="h-[12px]"/>
-      <SkillBox/>
+      <SkillBox skillDashboard={skillDashboard}/>
     </div>
   );
 }
 
 
-const menuItems = [
-  {
-    'name': 'Skills',
-  },
-  {
-    'name': 'Project',
-  },
-  {
-    'name': 'Profile',
-  },
-  {
-    'name': 'Contract',
-  },
-]
 
 function TopMenu({menuOnClick, selectIndex} : {menuOnClick: (index: number) => void, selectIndex: number}){
+  const menuItems = [
+    {
+      'name': 'Skills',
+    },
+    {
+      'name': 'Project',
+    },
+    {
+      'name': 'Profile',
+    },
+    {
+      'name': 'Contract',
+    },
+  ]
+
   return (
     <div className="w-[802px] h-[56px] rounded-[18px] bg-white flex items-center pl-[20px]">
       {menuItems.map((item, index) => (
@@ -142,12 +150,16 @@ function TopMenu({menuOnClick, selectIndex} : {menuOnClick: (index: number) => v
   );
 }
 
-function SkillBox(){
+function SkillBox({skillDashboard}: { skillDashboard?: SkillDashboardResponse}){
+  const langStr = skillDashboard?.languages.map((lang) => lang.name).join(', ') ?? '';
+  const frameworkStr = skillDashboard?.frameworks.map((framework) => framework.name).join(', ') ?? '';
   return (
     <div className="w-[802px] h-[379px] flex flex-col">
       <div className="w-full flex flex-row justify-between">
-        <SkillItem title={"Language"} content={"js, ts"} count={6}/>
-        <SkillItem title={"Language"} content={"js, ts"} count={6}/>
+        {skillDashboard !== undefined &&
+            <SkillItem title={"Language"} content={langStr} count={skillDashboard.languages.length}/> }
+        {skillDashboard !== undefined &&
+          <SkillItem title={"Framewrok"} content={frameworkStr} count={skillDashboard.frameworks.length}/> }
         <SkillItem title={"Language"} content={"js, ts"} count={6}/>
       </div>
       <div className="flex-grow"/>

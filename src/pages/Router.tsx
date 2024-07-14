@@ -1,10 +1,6 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {useUserStore} from "@/store/userStore.ts";
-import {useEffect} from "react";
-import secureLocalStorage from "react-secure-storage";
 import MainPage from "@/pages/(beforeLogin)/main/MainPage.tsx";
 import LoginPage from "@/pages/(beforeLogin)/login/LoginPage.tsx";
-import {getUser} from "@/api/user/user.api.ts";
 import RootLayout from "@/pages/RootLayout.tsx";
 import GithubAfterLoginPage from "@/pages/(beforeLogin)/login/GithubAfterLoginPage.tsx";
 import DashboardPage from "@/pages/(afterLogin)/dashboard/DashboardPage.tsx";
@@ -27,29 +23,6 @@ const router = createBrowserRouter([
 ]);
 
 export default function Router() {
-  const {user, setUser, resetUser} = useUserStore();
-  if(import.meta.env.MODE === 'dev'){
-    const token = import.meta.env.VITE_ACCESS_TOKEN;
-    if(token){
-      secureLocalStorage.setItem('accessToken', token);
-    }
-  }
-  useEffect(() => {
-    if (user) {
-      return;
-    }
-    if (secureLocalStorage.getItem('accessToken') === null) {
-      return;
-    }
-    getUser().then((user) => {
-      setUser(user);
-    }).catch(() => {
-      resetUser();
-    });
-
-  }, []);
-
-
   return (
     <RouterProvider router={router}/>
   );

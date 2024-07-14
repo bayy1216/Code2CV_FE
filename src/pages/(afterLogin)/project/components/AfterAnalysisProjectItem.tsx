@@ -1,7 +1,10 @@
 import {ProjectAnalysisMetaModel} from "@/api/project/project.response.ts";
+import {Link} from "react-router-dom";
 
 
-export function AfterAnalysisProjectList({projectAnalysisMetas}: {projectAnalysisMetas?: ProjectAnalysisMetaModel[]}) {
+export function AfterAnalysisProjectList({projectAnalysisMetas}: {
+  projectAnalysisMetas?: ProjectAnalysisMetaModel[]
+}) {
   return (
     <div className="w-[420px] flex flex-col p-[24px]  overflow-y-auto
      bg-white rounded-[24px]">
@@ -15,9 +18,9 @@ export function AfterAnalysisProjectList({projectAnalysisMetas}: {projectAnalysi
   );
 }
 
-function AfterAnalysisProjectItem({projectAnalysisMeta}: {projectAnalysisMeta: ProjectAnalysisMetaModel}) {
+function AfterAnalysisProjectItem({projectAnalysisMeta}: { projectAnalysisMeta: ProjectAnalysisMetaModel }) {
 
-  function ChipBox({content}: {content: string}) {
+  function ChipBox({content}: { content: string }) {
     return (
       <div className="h-[26px] bg-gray-4 mr-2 rounded flex items-center px-[6px]">
         <h4 className="text-[12px] font-medium text-gray-0">
@@ -26,23 +29,26 @@ function AfterAnalysisProjectItem({projectAnalysisMeta}: {projectAnalysisMeta: P
       </div>
     );
   }
+
   //기여도
 
 
   return (
-    <div className="w-[372px] h-[212px] flex flex-col mb-[40px] ">
-      <div className="w-full h-[138px] bg-red-300 rounded-[24px]"></div>
-      <h1 className="my-2 text-[16px] font-bold">
-        {projectAnalysisMeta.projectName}
-      </h1>
-      <div className="flex flex-row">
-        {projectAnalysisMeta.language && (
-          <ChipBox content={`${projectAnalysisMeta.language}`}/>
-        )}
-        <ChipBox content={`${projectAnalysisMeta.contributorCount}인`}/>
-        {/*<ChipBox content={`기여도 ${contributePercent}%`}/>*/}
-        <ChipBox content={`별 ${projectAnalysisMeta.starsCount}`}/>
-      </div>
+    <div className="w-[372px] h-[212px] flex flex-col mb-[40px]">
+      <Link to={`/user/project/${projectAnalysisMeta.id}`}>
+        <div className="w-full h-[138px] bg-red-300 rounded-[24px]"></div>
+        <h1 className="my-2 text-[16px] font-bold">
+          {projectAnalysisMeta.projectName}
+        </h1>
+        <div className="flex flex-row">
+          {projectAnalysisMeta.language && (
+            <ChipBox content={`${projectAnalysisMeta.language}`}/>
+          )}
+          <ChipBox content={`${projectAnalysisMeta.contributorCount}인`}/>
+          {/*<ChipBox content={`기여도 ${contributePercent}%`}/>*/}
+          <ChipBox content={`별 ${projectAnalysisMeta.starsCount}`}/>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import GithubAfterLoginPage from "@/pages/(beforeLogin)/login/GithubAfterLoginPa
 import DashboardPage from "@/pages/(afterLogin)/dashboard/DashboardPage.tsx";
 import AfterLoginLayout from "@/pages/(afterLogin)/AfterLoginLayout.tsx";
 import ProjectPage from "@/pages/(afterLogin)/project/ProjectPage.tsx";
+import ProjectDetailPage from "@/pages/(afterLogin)/project/ProjectDetailPage.tsx";
 
 const router = createBrowserRouter([
   {path: "/", element: <RootLayout/>, children: [
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
         {path: "dashboard", element: <DashboardPage/>},
         {path: "resume", element: <div>resume</div>},
         {path: "project", element: <ProjectPage/>},
+        {path: "project/:id", element: <ProjectDetailPage/>},
         {path: "mypage", element: <div>mypage</div>}
       ]
     },

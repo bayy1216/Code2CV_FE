@@ -17,8 +17,8 @@ const router = createBrowserRouter([
         {path: "mypage", element: <div>mypage</div>}
       ]
     },
+    {path: "login", element: <LoginPage/>},
   ]},
-  {path: "/login", element: <LoginPage/>},
   {path: "/login/oauth2/github", element: <GithubAfterLoginPage/>},
 ]);
 

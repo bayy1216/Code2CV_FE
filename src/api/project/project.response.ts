@@ -14,6 +14,20 @@ export interface ProjectDetailModel extends ProjectModel {
   languageInfo: Map<string, number>;
   contributors: ContributorModel[];
 }
+export interface ProjectAnalysisMetaModel {
+  id: number;
+  projectUrl: string;
+  projectName: string;
+  starsCount: number;
+  forksCount: number;
+  startAt: string;
+  updatedAt: string;
+  language?: string;
+  contributorCount: number;
+  imageUrl?: string;
+}
+
+
 
 export interface ProjectAnalysisDetailModel extends ProjectModel{
   analyze: ProjectAnalysis;

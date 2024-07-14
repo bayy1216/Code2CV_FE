@@ -5,7 +5,7 @@ import RootLayout from "@/pages/RootLayout.tsx";
 import GithubAfterLoginPage from "@/pages/(beforeLogin)/login/GithubAfterLoginPage.tsx";
 import DashboardPage from "@/pages/(afterLogin)/dashboard/DashboardPage.tsx";
 import AfterLoginLayout from "@/pages/(afterLogin)/AfterLoginLayout.tsx";
-import ProjectPage from "@/pages/(afterLogin)/dashboard/ProjectPage.tsx";
+import ProjectPage from "@/pages/(afterLogin)/project/ProjectPage.tsx";
 
 const router = createBrowserRouter([
   {path: "/", element: <RootLayout/>, children: [

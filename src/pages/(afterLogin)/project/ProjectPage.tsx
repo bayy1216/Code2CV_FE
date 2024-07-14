@@ -1,8 +1,8 @@
 import {useQuery} from "@tanstack/react-query";
 import {ProjectAnalysisMetaModel, ProjectModel} from "@/api/project/project.response.ts";
 import {getProjects} from "@/api/project/project.api.ts";
-import {ProjectList} from "@/pages/(afterLogin)/dashboard/components/ProjectItem.tsx";
-import {AfterAnalysisProjectList} from "@/pages/(afterLogin)/dashboard/components/AfterAnalysisProjectItem.tsx";
+import {ProjectList} from "@/pages/(afterLogin)/project/components/ProjectItem.tsx";
+import {AfterAnalysisProjectList} from "@/pages/(afterLogin)/project/components/AfterAnalysisProjectItem.tsx";
 import {getProjectAnalyzeDetails} from "@/api/analyze/analyze.api.ts";
 
 export default function ProjectPage() {

@@ -1,6 +1,6 @@
 import {ProjectModel} from "@/api/project/project.response.ts";
 import {useState} from "react";
-import {analyzeProjectById} from "@/api/analyze/analyze.api.ts";
+import {analyzeProjectById} from "@/api/project/analyze.api.ts";
 
 export function ProjectList({projects}: {projects?: ProjectModel[]}) {
 

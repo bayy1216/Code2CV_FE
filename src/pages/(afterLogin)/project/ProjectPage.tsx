@@ -3,7 +3,7 @@ import {ProjectAnalysisMetaModel, ProjectModel} from "@/api/project/project.resp
 import {getProjects} from "@/api/project/project.api.ts";
 import {ProjectList} from "@/pages/(afterLogin)/project/components/ProjectItem.tsx";
 import {AfterAnalysisProjectList} from "@/pages/(afterLogin)/project/components/AfterAnalysisProjectItem.tsx";
-import {getProjectAnalyzeDetails} from "@/api/analyze/analyze.api.ts";
+import {getProjectAnalyzeDetails} from "@/api/project/analyze.api.ts";
 
 export default function ProjectPage() {
   const projects = useQuery<ProjectModel[]>({

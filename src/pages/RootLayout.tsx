@@ -28,8 +28,8 @@ export default function RootLayout() {
 
   }, []);
   return (
-    <div className="w-full h-dvh flex flex-col items-center">
-      <div className="w-[1280px]">
+    <div className="w-full h-dvh flex flex-col items-center bg-primary-bg-grey">
+      <div className="w-full">
         <RootHeader/>
       </div>
       <div className="w-full h-full">

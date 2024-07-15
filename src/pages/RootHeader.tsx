@@ -15,21 +15,25 @@ export default function RootHeader() {
 
 
   return (
-    <header className="w-full flex flex-row h-[80px] items-center px-[200px]">
-      <Link to={'/'}>
-        <img src="/CODE2CV.svg" alt="logo"/>
-      </Link>
+    <header className="w-dvw h-[80px] items-center bg-white">
+      <div className="w-[1280px] h-full flex flex-row items-center">
+        <div className="w-[200px]"></div>
+        <Link to={'/'}>
+          <img src="/CODE2CV.svg" alt="logo"/>
+        </Link>
 
-      <div className="w-[80px]"></div>
-      <nav className="flex justify-between h-[27px] w-[379px]">
-        {menuItems.map((item, index) => (
-          <Link to={item.href} key={index} className="text-[18px]">
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-      <div className="flex-grow"/>
-      <UserMenu user={user}/>
+        <div className="w-[80px]"></div>
+        <nav className="flex justify-between h-[27px] w-[379px]">
+          {menuItems.map((item, index) => (
+            <Link to={item.href} key={index} className="text-[18px]">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex-grow"/>
+        <UserMenu user={user}/>
+      </div>
+
     </header>
   )
 }

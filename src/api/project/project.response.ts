@@ -33,7 +33,7 @@ export interface ProjectWithMetaModel extends ProjectModel {
 
 export interface ProjectAnalysisDetailModel {
   project: ProjectWithMetaModel;
-  analysis: ProjectAnalysis;
+  projectAnalysis: ProjectAnalysis;
   contributors: ProjectContributorModel[];
   usingLanguages: ProjectUsingLanguageModel[];
 }

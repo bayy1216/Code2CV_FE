@@ -34,7 +34,7 @@ export interface ProjectWithMetaModel extends ProjectModel {
 export interface ProjectAnalysisDetailModel {
   project: ProjectWithMetaModel;
   projectAnalysis: ProjectAnalysis;
-  contributors: ProjectContributorModel[];
+  contributions: ProjectContributonModel[];
   usingLanguages: ProjectUsingLanguageModel[];
 }
 export interface ProjectAnalysis {
@@ -47,8 +47,8 @@ export interface ProjectAnalysis {
 }
 
 
-export interface ProjectContributorModel{
-  githubUsername: string;
+export interface ProjectContributonModel {
+  githubUserName: string;
   commitCount: number;
   addedLines: number;
   deletedLines: number;

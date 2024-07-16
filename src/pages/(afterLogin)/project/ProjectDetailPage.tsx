@@ -35,11 +35,22 @@ export default function ProjectDetailPage() {
           <div className="w-[640px] h-full flex flex-col">
             <div className="flex flex-row justify-between">
               <WhiteBox title={"기여도"}>
-
+                {data?.contributions.map((contributor) => (
+                  <div>
+                    {contributor.githubUserName} - <br/>{contributor.usingLanguages.join(", ")}
+                    <br/>
+                    commit {contributor.commitCount}<br/>
+                    add {contributor.addedLines}, delete {contributor.deletedLines}
+                  </div>
+                ))}
               </WhiteBox>
               <WhiteBox title={"사용언어"}>
                 <div className={"overflow-clip"}>
-                  {JSON.stringify(data?.usingLanguages)}
+                  {data?.usingLanguages.map((usingLanguage) => (
+                    <div>
+                      {usingLanguage.language} : {usingLanguage.bytesOfCode}
+                    </div>
+                  ))}
                 </div>
 
               </WhiteBox>

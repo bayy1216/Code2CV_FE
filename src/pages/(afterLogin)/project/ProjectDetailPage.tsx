@@ -3,6 +3,7 @@ import {useQuery} from "@tanstack/react-query";
 import {ProjectAnalysisDetailModel} from "@/api/project/project.response.ts";
 import {getProjectAnalysisDetailById} from "@/api/project/analyze.api.ts";
 import {ApiError} from "@/api/ApiError.ts";
+import {RootHeaderHeight} from "@/pages/RootHeader.tsx";
 
 export default function ProjectDetailPage() {
   const location = useLocation();
@@ -23,13 +24,13 @@ export default function ProjectDetailPage() {
   });
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className={`flex flex-col items-center w-full min-h-[calc(100vh-${RootHeaderHeight})]`}>
       <div className="w-[1080px]">
 
-        <h1 className="font-bold text-[24px] w-full items-start mb-[24px]">
+        <h1 className="font-bold text-[24px] w-full items-start mb-[24px] mt-[12px]">
           분석 결과
         </h1>
-        <div className="flex flex-row h-[604px]">
+        <div className="flex flex-row h-[604px] justify-between">
 
           <div className="w-[640px] h-full flex flex-col">
             <div className="flex flex-row justify-between">
@@ -37,7 +38,9 @@ export default function ProjectDetailPage() {
 
               </WhiteBox>
               <WhiteBox title={"사용언어"}>
-
+                <div className={"overflow-clip"}>
+                  {JSON.stringify(data?.usingLanguages)}
+                </div>
 
               </WhiteBox>
             </div>
@@ -51,19 +54,25 @@ export default function ProjectDetailPage() {
               </WhiteBox>
             </div>
             <div className="h-[10px]"/>
-            <WhiteBox title={"구현한 기능"} width="full">
+            <WhiteBox2 title={"구현한 기능"}>
 
-            </WhiteBox>
+            </WhiteBox2>
 
           </div>
           <div className="w-[24px]"/>
+          <WhiteBox3 title={"개선 내용 추천"}>
 
-          <WhiteBox title={"개선 내용 추천"} width="416" height={"full"}>
-          </WhiteBox>
+          </WhiteBox3>
         </div>
-        <WhiteBox title={"메모"} width={"full"} height={"5000px"} >
 
-        </WhiteBox>
+        <div className="h-[10px]"/>
+        <div className={`w-[1080px] h-[200px] bg-white rounded-[20px] p-[24px]`}>
+          <h3 className="font-bold text-[20px]">
+            메모
+          </h3>
+          <div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -72,22 +81,50 @@ export default function ProjectDetailPage() {
 interface WhiteBoxProps {
   children?: React.ReactNode;
   title: string;
-  width?: string;
-  height?: string;
 }
+
 function WhiteBox({
-  children,
-  title,
-  width = "640",
-  height = "200"
-}: WhiteBoxProps) {
+                    children,
+                    title,
+                  }: WhiteBoxProps) {
   return (
-    <div className={`w-[${width}px] h-[${height}px] bg-white rounded-[20px] p-[24px]`}>
+    <div className={`w-[315px] h-[200px] bg-white rounded-[20px] p-[24px]`}>
       <h3 className="font-bold text-[20px]">
         {title}
       </h3>
       <div>
       {children}
+      </div>
+    </div>
+  );
+}
+
+function WhiteBox2({
+  children,
+  title,
+}: WhiteBoxProps) {
+  return (
+    <div className={`w-full h-[200px] bg-white rounded-[20px] p-[24px]`}>
+      <h3 className="font-bold text-[20px]">
+        {title}
+      </h3>
+      <div>
+        {children}
+      </div>
+    </div>
+  );
+}
+function WhiteBox3({
+ children,
+ title,
+}: WhiteBoxProps) {
+  return (
+    <div className={`w-[416px] h-full bg-white rounded-[20px] p-[24px]`}>
+      <h3 className="font-bold text-[20px]">
+        {title}
+      </h3>
+      <div>
+        {children}
       </div>
     </div>
   );

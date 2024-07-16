@@ -14,12 +14,7 @@ export default function AfterLoginLayout() {
   }, [user]);
 
   return (
-    <div className="h-full w-full flex flex-col items-center bg-primary-bg-grey">
-      <div className="h-full w-[1280px]">
-        <Outlet/>
-      </div>
-
-    </div>
+    <Outlet/>
 
   );
 }

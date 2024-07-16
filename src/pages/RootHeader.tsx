@@ -9,15 +9,15 @@ const menuItems = [
   {label: '마이페이지', href: '/user/mypage'},
 ]
 
+export const RootHeaderHeight = '80px';
 
 export default function RootHeader() {
   const {user} = useUserStore();
 
 
   return (
-    <header className="w-dvw h-[80px] items-center bg-white">
+    <header className="w-dvw h-[80px] items-center bg-white flex justify-center z-50 fixed">
       <div className="w-[1280px] h-full flex flex-row items-center">
-        <div className="w-[200px]"></div>
         <Link to={'/'}>
           <img src="/CODE2CV.svg" alt="logo"/>
         </Link>

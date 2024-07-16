@@ -17,7 +17,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="w-full h-full flex flex-row px-32 justify-center">
+    <div className={`w-full h-[calc(100vh-80px)] flex flex-row px-32 justify-center`}>
       <DashboardUserMenu user={user}/>
       <DashboardMain skillDashboard={data}/>
     </div>

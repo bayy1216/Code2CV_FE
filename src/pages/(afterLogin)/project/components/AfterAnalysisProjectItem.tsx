@@ -6,10 +6,10 @@ export function AfterAnalysisProjectList({projectAnalysisMetas}: {
   projectAnalysisMetas?: ProjectAnalysisMetaModel[]
 }) {
   return (
-    <div className="w-[420px] flex flex-col p-[24px]  overflow-y-auto
+    <div className="w-[420px] min-h-[640px] max-h-[calc(100%-16px)] flex flex-col py-[24px]
      bg-white rounded-[24px]">
-      <h1 className="text-[20px] font-bold mb-[20px]">분석 완료된 프로젝트</h1>
-      <div className="flex flex-col w-full">
+      <h1 className="text-[20px] font-bold mb-[20px] px-[24px]">분석 완료된 프로젝트</h1>
+      <div className="flex flex-col w-full overflow-x-hidden overflow-y-auto pl-[24px]">
         {projectAnalysisMetas?.map((projectAnalysisMeta) => (
           <AfterAnalysisProjectItem key={projectAnalysisMeta.id} projectAnalysisMeta={projectAnalysisMeta}/>
         ))}

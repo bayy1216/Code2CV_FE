@@ -16,7 +16,7 @@ export function ProjectList({projects}: {projects?: ProjectModel[]}) {
   }
 
   return (
-    <div className="w-[640px] flex flex-col
+    <div className="w-[640px] min-h-[640px] max-h-[calc(100%-16px)] flex flex-col
     items-center bg-white pt-12 rounded-[24px] px-4">
       <input
         className="w-full h-[48px] bg-gray-100 rounded-[12px] text-[16px] p-4"

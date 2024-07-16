@@ -18,7 +18,7 @@ export default function ProjectPage() {
 
 
   return (
-    <div className="w-full h-full flex flex-row justify-center pt-4">
+    <div className={`w-full max-h-[calc(100vh-80px)] overflow-hidden flex flex-row justify-center py-4`}>
       <ProjectList projects={projects.data}/>
       <div className="w-4"></div>
       <AfterAnalysisProjectList projectAnalysisMetas = {projectAnalysisMetas.data}/>

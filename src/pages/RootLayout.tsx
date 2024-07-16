@@ -28,11 +28,9 @@ export default function RootLayout() {
 
   }, []);
   return (
-    <div className="w-full h-dvh flex flex-col items-center bg-primary-bg-grey">
-      <div className="w-full">
-        <RootHeader/>
-      </div>
-      <div className="w-full h-full">
+    <div className="w-full flex flex-col items-center bg-primary-bg-grey">
+      <RootHeader/>
+      <div className="w-full h-[calc(auto-80px)] pt-[80px]">
         <Outlet/>
       </div>
 

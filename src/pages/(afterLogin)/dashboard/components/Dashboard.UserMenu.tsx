@@ -34,7 +34,7 @@ export default function DashboardUserMenu({user}: { user: UserModel }) {
 
 
   return (
-    <div className="w-[256px] flex flex-col
+    <div className="w-[256px] h-[calc(100%-16px)] flex flex-col
     items-center bg-white m-4 p-6 rounded-[24px]">
       <img className=" w-[62px] h-[62px] rounded-full" src={user.profileImageUrl} alt=""/>
       <h1 className="text-[18px] font-bold mt-2">

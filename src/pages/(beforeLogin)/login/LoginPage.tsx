@@ -1,22 +1,24 @@
 import {useUserStore} from "@/store/userStore.ts";
 import {useNavigate} from "react-router-dom";
 import {GITHUB_LOGIN_URL} from "@/const/data.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {emailLogin} from "@/api/auth/auth.api.ts";
 import secureLocalStorage from "react-secure-storage";
 
 
 export default function LoginPage() {
-  const { user, setUser } = useUserStore();
+  const { setUser } = useUserStore();
   const nav = useNavigate();
 
   const randomState = Math.random().toString(36).substring(7);
   localStorage.setItem('state', randomState);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  if(user){
-    nav('/');
-  }
+  useEffect(() => {
+    if(secureLocalStorage.getItem('accessToken')){
+      nav('/user/dashboard');
+    }
+  }, []);
   const onLoginClick = async () => {
     const res = await emailLogin({email, password});
     secureLocalStorage.setItem('accessToken', res.accessToken);
@@ -26,7 +28,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-[calc(100vh-80px)]">
       <div className="h-[60px]"/>
       <button className="font-bold text-[24px]">
         로그인
